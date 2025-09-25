@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelnic Solutions - AI-Powered Ecommerce Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a56db;
+            --secondary: #1e429f;
+            --accent: #3b82f6;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7fb;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .cart-icon {
+            position: relative;
+            margin-right: 1rem;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        .auth-buttons button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .auth-buttons button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 86, 219, 0.9), rgba(30, 66, 159, 0.9)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            background: var(--light);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary);
+            font-size: 2rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+        }
+        
+        /* Dashboard Preview */
+        .dashboard-preview {
+            background: var(--light);
+            padding: 5rem 0;
+        }
+        
+        .dashboard-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dashboard-header {
+            background: var(--dark);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dashboard-tabs {
+            display: flex;
+            background: var(--light-gray);
+            padding: 0 1.5rem;
+        }
+        
+        .tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .tab-content {
+            padding: 2rem;
+            min-height: 400px;
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .metric-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .compliance-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .badge {
+            background: var(--light);
+            border: 1px solid var(--light-gray);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .badge i {
+            margin-right: 5px;
+            color: var(--success);
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.popular::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 0 0 0 10px;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.5rem 0;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pricing-features li i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+        
+        /* Shopping Cart */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1100;
+            overflow-y: auto;
+        }
+        
+        .cart-modal.active {
+            display: block;
+        }
+        
+        .cart-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cart-items {
+            padding: 1rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            border-bottom: 1px solid var(--light-gray);
+            padding: 1rem 0;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background: var(--light);
+            border-radius: 5px;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+        }
+        
+        .quantity-btn {
+            background: var(--light);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .quantity {
+            margin: 0 0.5rem;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+        }
+        
+        .cart-footer {
+            padding: 1rem;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .cart-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .cart-actions button {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .clear-cart {
+            background: var(--light);
+            color: var(--dark);
+        }
+        
+        .checkout {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Admin Dashboard */
+        .admin-login {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: 2rem auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .admin-login h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+        }
+        
+        .admin-dashboard {
+            display: none;
+            padding: 2rem 0;
+        }
+        
+        .admin-dashboard.active {
+            display: block;
+        }
+        
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .admin-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .admin-stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .admin-charts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-chart {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                width: 100%;
+                margin-top: 1rem;
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 0.8rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .header-actions {
+                margin-left: auto;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cart-modal {
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .features, .dashboard-preview, .pricing {
+                padding: 3rem 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .admin-charts {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>Kelnic Solutions</span>
+                </div>
+                
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#dashboard">Dashboard</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#compliance">Compliance</a></li>
+                        <li><a href="#ai-tools">AI Tools</a></li>
+                        <li><a href="#admin">Admin</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <div class="auth-buttons">
+                        <button id="loginBtn">Login</button>
+                        <button id="signupBtn">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Shopping Cart -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h3>Your Shopping Cart</h3>
+            <button id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">R 0.00</span>
+            </div>
+            <div class="cart-actions">
+                <button class="clear-cart" id="clearCart">Clear Cart</button>
+                <button class="checkout">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>AI-Powered Ecommerce Platform</h1>
+            <p>Create, market, and manage your online store with artificial intelligence. Generate content, run campaigns, ensure compliance, and grow your business autonomously across Southern Africa and beyond.</p>
+            <a href="#pricing" class="cta-button">Start Free Trial <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Powerful AI Features</h2>
+                <p>Our platform combines cutting-edge AI technologies to automate and optimize your ecommerce operations.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h3>AI Content Creation</h3>
+                    <p>Generate product descriptions, blog posts, and marketing copy with our advanced natural language processing models.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Smart Store Builder</h3>
+                    <p>Create fully responsive ecommerce websites in minutes with our AI-powered website builder and templates.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Marketing Automation</h3>
+                    <p>Run targeted ad campaigns with AI optimization, tracking, and performance analysis across multiple channels.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Model Training</h3>
+                    <p>Continuously train and retrain AI models based on your data to improve predictions and personalization.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Compliance Management</h3>
+                    <p>Stay compliant with regulations in South Africa, Namibia, Botswana, and other regions with automated monitoring.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Self-Funding AI</h3>
+                    <p>Our AI allocates budget, monitors ROI, and reinvests profits to grow your business autonomously.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview -->
+    <section class="dashboard-preview" id="dashboard">
+        <div class="container">
+            <div class="section-title">
+                <h2>AI Dashboard Overview</h2>
+                <p>Monitor and control all aspects of your ecommerce business from a single, intelligent dashboard.</p>
+            </div>
+            
+            <div class="dashboard-container">
+                <div class="dashboard-header">
+                    <div>Kelnic Solutions Dashboard</div>
+                    <div>
+                        <i class="fas fa-circle" style="color: #10b981; margin-right: 5px;"></i>
+                        <span>System Status: Optimal</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-tabs">
+                    <div class="tab active" data-tab="overview">Overview</div>
+                    <div class="tab" data-tab="content">Content AI</div>
+                    <div class="tab" data-tab="marketing">Marketing</div>
+                    <div class="tab" data-tab="compliance">Compliance</div>
+                    <div class="tab" data-tab="ai-models">AI Models</div>
+                </div>
+                
+                <div class="tab-content">
+                    <div class="tab-pane active" id="overview">
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">R 224,584</div>
+                                <div class="metric-label">Revenue (Last 7 days)</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">3,842</div>
+                                <div class="metric-label">Visitors (Last 7 days)</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">6.2%</div>
+                                <div class="metric-label">Conversion Rate</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">R 58.42</div>
+                                <div class="metric-label">Cost Per Acquisition</div>
+                            </div>
+                        </div>
+                        
+                        <h3>AI Recommendations</h3>
+                        <ul>
+                            <li>✅ Increase budget for "Summer Collection" campaign - ROI is 320%</li>
+                            <li>📝 Generate new product descriptions for 12 items with low conversion</li>
+                            <li>🔄 Retrain recommendation model with latest customer data</li>
+                            <li>🔒 Compliance check completed for Botswana - no issues found</li>
+                        </ul>
+                        
+                        <div class="compliance-badges">
+                            <div class="badge"><i class="fas fa-check-circle"></i> South Africa POPIA Compliant</div>
+                            <div class="badge"><i class="fas fa-check-circle"></i> Namibia Data Protection</div>
+                            <div class="badge"><i class="fas fa-check-circle"></i> Botswana Cybercrime Law</div>
+                            <div class="badge"><i class="fas fa-sync-alt"></i> GDPR Compliance Active</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="content">
+                        <h3>AI Content Generation</h3>
+                        <p>Generate product descriptions, blog posts, and marketing content with our advanced AI.</p>
+                        
+                        <div style="background: var(--light-gray); padding: 1rem; border-radius: 5px; margin: 1rem 0;">
+                            <h4>Content Brief</h4>
+                            <p>Product: Wireless Bluetooth Headphones</p>
+                            <p>Target Audience: Tech-savvy professionals</p>
+                            <p>Tone: Professional yet approachable</p>
+                            <button style="background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; margin-top: 0.5rem;">Generate Content</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="marketing">
+                        <h3>Marketing Campaigns</h3>
+                        <p>AI-optimized advertising across multiple channels with real-time performance tracking.</p>
+                        
+                        <div style="display: flex; justify-content: space-between; margin-top: 1.5rem;">
+                            <div style="flex: 1; padding: 1rem; background: var(--light); border-radius: 5px; margin-right: 1rem;">
+                                <h4>Facebook Ads</h4>
+                                <p>Spend: R 8,100</p>
+                                <p>ROI: 280%</p>
+                                <p>Status: <span style="color: var(--success);">Optimizing</span></p>
+                            </div>
+                            <div style="flex: 1; padding: 1rem; background: var(--light); border-radius: 5px; margin-right: 1rem;">
+                                <h4>Google Ads</h4>
+                                <p>Spend: R 11,160</p>
+                                <p>ROI: 195%</p>
+                                <p>Status: <span style="color: var(--warning);">Testing New Creatives</span></p>
+                            </div>
+                            <div style="flex: 1; padding: 1rem; background: var(--light); border-radius: 5px;">
+                                <h4>Instagram</h4>
+                                <p>Spend: R 5,760</p>
+                                <p>ROI: 410%</p>
+                                <p>Status: <span style="color: var(--success);">Scaling</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Transparent Pricing (ZAR)</h2>
+                <p>Choose the plan that fits your business needs. All plans include our core AI features.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <p>Perfect for small businesses</p>
+                    <div class="price">R 899<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> AI Content Generation (50 items/month)</li>
+                        <li><i class="fas fa-check"></i> Basic Store Builder</li>
+                        <li><i class="fas fa-check"></i> Marketing Campaigns (2 channels)</li>
+                        <li><i class="fas fa-check"></i> Basic Compliance Monitoring</li>
+                        <li><i class="fas fa-times"></i> Advanced Model Training</li>
+                        <li><i class="fas fa-times"></i> Self-Funding AI</li>
+                    </ul>
+                    <a href="#" class="cta-button">Get Started</a>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <h3>Professional</h3>
+                    <p>Most popular for growing businesses</p>
+                    <div class="price">R 1,799<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> AI Content Generation (200 items/month)</li>
+                        <li><i class="fas fa-check"></i> Advanced Store Builder</li>
+                        <li><i class="fas fa-check"></i> Marketing Campaigns (5 channels)</li>
+                        <li><i class="fas fa-check"></i> Full Compliance Monitoring</li>
+                        <li><i class="fas fa-check"></i> Basic Model Training</li>
+                        <li><i class="fas fa-times"></i> Self-Funding AI</li>
+                    </ul>
+                    <a href="#" class="cta-button">Get Started</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <p>For large-scale operations</p>
+                    <div class="price">R 3,599<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Unlimited AI Content Generation</li>
+                        <li><i class="fas fa-check"></i> Custom Store Builder</li>
+                        <li><i class="fas fa-check"></i> Marketing Campaigns (Unlimited channels)</li>
+                        <li><i class="fas fa-check"></i> Global Compliance Monitoring</li>
+                        <li><i class="fas fa-check"></i> Advanced Model Training</li>
+                        <li><i class="fas fa-check"></i> Self-Funding AI</li>
+                    </ul>
+                    <a href="#" class="cta-button">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard Section -->
+    <section id="admin" class="dashboard-preview">
+        <div class="container">
+            <div class="section-title">
+                <h2>Owner Admin Dashboard</h2>
+                <p>Secure login for business owners to monitor financial performance and growth metrics.</p>
+            </div>
+            
+            <div class="admin-login" id="adminLogin">
+                <h2>Admin Login</h2>
+                <div class="form-group">
+                    <label for="adminUsername">Username</label>
+                    <input type="text" id="adminUsername" placeholder="Enter admin username">
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" placeholder="Enter admin password">
+                </div>
+                <button class="cta-button" style="width: 100%;" id="adminLoginBtn">Login to Admin Dashboard</button>
+            </div>
+            
+            <div class="admin-dashboard" id="adminDashboard">
+                <h2>Kelnic Solutions - Business Overview</h2>
+                
+                <div class="admin-stats">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-value">R 2,458,920</div>
+                        <div class="admin-stat-label">Total Revenue (YTD)</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-value">1,248</div>
+                        <div class="admin-stat-label">Active Subscribers</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-value">R 204,910</div>
+                        <div class="admin-stat-label">Monthly Recurring Revenue</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-value">+18.5%</div>
+                        <div class="admin-stat-label">Growth (Last 30 days)</div>
+                    </div>
+                </div>
+                
+                <div class="admin-charts">
+                    <div class="admin-chart">
+                        <h3>Subscription Growth</h3>
+                        <canvas id="subscriptionChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="admin-chart">
+                        <h3>Revenue by Plan</h3>
+                        <canvas id="revenueChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+                
+                <div class="admin-chart">
+                    <h3>Most Used Features</h3>
+                    <canvas id="featuresChart" width="400" height="200"></canvas>
+                </div>
+                
+                <button class="cta-button" id="adminLogoutBtn" style="margin-top: 2rem;">Logout</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Kelnic Solutions</h3>
+                    <p>Revolutionizing ecommerce with artificial intelligence, automation, and compliance management across Southern Africa.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Features</h3>
+                    <ul>
+                        <li><a href="#features">AI Content Creation</a></li>
+                        <li><a href="#features">Website Builder</a></li>
+                        <li><a href="#features">Marketing Automation</a></li>
+                        <li><a href="#features">Model Training</a></li>
+                        <li><a href="#features">Compliance Management</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#">API Reference</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Kelnic Solutions. All rights reserved. Compliant with South Africa, Namibia, Botswana regulations.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+        
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and panes
+                tabs.forEach(t => t.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.remove('active'));
+                
+                // Add active class to current tab and pane
+                this.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Shopping Cart Functionality
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const clearCartBtn = document.getElementById('clearCart');
+        const cartCount = document.querySelector('.cart-count');
+        
+        let cart = JSON.parse(localStorage.getItem('kelnicCart')) || [];
+        
+        // Sample products for demonstration
+        const products = [
+            { id: 1, name: "AI Content Generation Pack", price: 899, image: "📝" },
+            { id: 2, name: "Ecommerce Store Setup", price: 1799, image: "🛍️" },
+            { id: 3, name: "Marketing Campaign Package", price: 1299, image: "📊" },
+            { id: 4, name: "Compliance Audit", price: 1599, image: "🔒" }
+        ];
+        
+        // Toggle cart modal
+        cartIcon.addEventListener('click', () => {
+            cartModal.classList.add('active');
+            updateCartDisplay();
+        });
+        
+        closeCart.addEventListener('click', () => {
+            cartModal.classList.remove('active');
+        });
+        
+        // Add to cart functionality (for demo, adding sample products)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add sample "Add to Cart" buttons to features
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach((card, index) => {
+                if (index < products.length) {
+                    const addButton = document.createElement('button');
+                    addButton.className = 'cta-button';
+                    addButton.style.marginTop = '1rem';
+                    addButton.textContent = 'Add to Cart - R ' + products[index].price;
+                    addButton.addEventListener('click', () => {
+                        addToCart(products[index]);
+                    });
+                    card.appendChild(addButton);
+                }
+            });
+            
+            updateCartCount();
+        });
+        
+        function addToCart(product) {
+            const existingItem = cart.find(item => item.id === product.id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            updateCartCount();
+            updateCartDisplay();
+            saveCartToStorage();
+            
+            // Show notification
+            alert(`${product.name} added to cart!`);
+        }
+        
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+        
+        function updateCartDisplay() {
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty</p>';
+                cartTotal.textContent = 'R 0.00';
+                return;
+            }
+            
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <div class="cart-item-image">${item.image}</div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">R ${item.price.toFixed(2)}</div>
+                        <div class="cart-item-actions">
+                            <div class="quantity-control">
+                                <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                            </div>
+                            <button class="remove-item" data-id="${item.id}">Remove</button>
+                        </div>
+                    </div>
+                `;
+                
+                cartItems.appendChild(cartItemElement);
+            });
+            
+            cartTotal.textContent = `R ${total.toFixed(2)}`;
+            
+            // Add event listeners to quantity buttons
+            document.querySelectorAll('.decrease').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    decreaseQuantity(id);
+                });
+            });
+            
+            document.querySelectorAll('.increase').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    increaseQuantity(id);
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    removeFromCart(id);
+                });
+            });
+        }
+        
+        function increaseQuantity(id) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity += 1;
+                updateCartCount();
+                updateCartDisplay();
+                saveCartToStorage();
+            }
+        }
+        
+        function decreaseQuantity(id) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                if (item.quantity > 1) {
+                    item.quantity -= 1;
+                } else {
+                    removeFromCart(id);
+                    return;
+                }
+                updateCartCount();
+                updateCartDisplay();
+                saveCartToStorage();
+            }
+        }
+        
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartCount();
+            updateCartDisplay();
+            saveCartToStorage();
+        }
+        
+        clearCartBtn.addEventListener('click', () => {
+            if (confirm('Are you sure you want to clear your cart?')) {
+                cart = [];
+                updateCartCount();
+                updateCartDisplay();
+                saveCartToStorage();
+            }
+        });
+        
+        function saveCartToStorage() {
+            localStorage.setItem('kelnicCart', JSON.stringify(cart));
+        }
+        
+        // Admin Dashboard Functionality
+        const adminLogin = document.getElementById('adminLogin');
+        const adminDashboard = document.getElementById('adminDashboard');
+        const adminLoginBtn = document.getElementById('adminLoginBtn');
+        const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+        
+        // Simple admin login (in a real app, this would be secure)
+        adminLoginBtn.addEventListener('click', () => {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            
+            // Simple demo login - in production, this would be secure
+            if (username === 'admin' && password === 'kelnic2023') {
+                adminLogin.style.display = 'none';
+                adminDashboard.classList.add('active');
+                initializeAdminCharts();
+            } else {
+                alert('Invalid admin credentials. Try: admin / kelnic2023');
+            }
+        });
+        
+        adminLogoutBtn.addEventListener('click', () => {
+            adminLogin.style.display = 'block';
+            adminDashboard.classList.remove('active');
+            document.getElementById('adminUsername').value = '';
+            document.getElementById('adminPassword').value = '';
+        });
+        
+        // Initialize admin charts
+        function initializeAdminCharts() {
+            // Subscription Growth Chart
+            const subscriptionCtx = document.getElementById('subscriptionChart').getContext('2d');
+            new Chart(subscriptionCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    datasets: [{
+                        label: 'Subscribers',
+                        data: [450, 620, 780, 910, 1050, 1180, 1248],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            
+            // Revenue by Plan Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Starter', 'Professional', 'Enterprise'],
+                    datasets: [{
+                        data: [359600, 1078800, 1020120],
+                        backgroundColor: [
+                            '#10b981',
+                            '#3b82f6',
+                            '#8b5cf6'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Features Usage Chart
+            const featuresCtx = document.getElementById('featuresChart').getContext('2d');
+            new Chart(featuresCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Content AI', 'Store Builder', 'Marketing', 'Compliance', 'AI Training'],
+                    datasets: [{
+                        label: 'Usage (hours)',
+                        data: [1240, 980, 1560, 870, 650],
+                        backgroundColor: '#1a56db'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Simulate AI content generation
+        document.querySelector('button').addEventListener('click', function() {
+            alert('AI is generating content for your product... This would connect to our AI models in a real implementation.');
+        });
+    </script>
+</body>
+</html>
