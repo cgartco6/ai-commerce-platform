@@ -1,0 +1,39 @@
+# Database
+DATABASE_URL=postgresql://username:password@localhost:5432/ai_commerce
+REDIS_URL=redis://localhost:6379
+
+# JWT Secret
+JWT_SECRET=your-super-secret-jwt-key-here
+
+# OpenAI API Key (for content generation)
+OPENAI_API_KEY=your-openai-api-key-here
+
+# Cloudinary (for image storage)
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+
+# Email Service (SendGrid, etc.)
+SENDGRID_API_KEY=your-sendgrid-key
+
+# Payment Gateway (Stripe)
+STRIPE_SECRET_KEY=your-stripe-secret-key
+STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
+
+# Regional Compliance API Keys
+SOUTH_AFRICA_COMPLIANCE_API_KEY=your-sa-key
+NAMIBIA_COMPLIANCE_API_KEY=your-namibia-key
+BOTSWANA_COMPLIANCE_API_KEY=your-botswana-key
+
+# Analytics
+GOOGLE_ANALYTICS_ID=your-ga-id
+
+# App Configuration
+NODE_ENV=development
+PORT=3001
+FRONTEND_URL=http://localhost:3000
+BACKEND_URL=http://localhost:3001
+
+# Rate Limiting
+RATE_LIMIT_WINDOW=900000
+RATE_LIMIT_MAX=100
